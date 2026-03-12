@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css" />
+    <style>
+      input { width: 5rem; }
+    </style>
+    <title>C++ / WebAssembly Demo</title>
+  </head>
+  <body>
+    <header>
+      <h1>C++ / WebAssembly Demo</h1>
+    </header>
+
+    <input type="number">
+    <button>Square</button>
+    <div id="result"></div>
+
+    <script>
+      const input = document.querySelector('input');
+      input.value = 1 + Math.floor(Math.random() * 10);
+
+      var Module = {
+        onRuntimeInitialized: () => {
+          const square = Module.cwrap('square', 'number', ['number']);
+
+          document.querySelector('button').addEventListener('click', () => {
+            document.querySelector('#result').innerHTML = `<code>${input.value} squared is ${square(input.value)}</code>`;
+          });
+        }
+      };
+    </script>
+
+    <script src="square.js"></script>
+  </body>
+</html>
