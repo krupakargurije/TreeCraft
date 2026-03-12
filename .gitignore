@@ -1,0 +1,7 @@
+public/square.js
+public/square.wasm
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
