@@ -19,6 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make build script executable
+        run: chmod +x build.sh
+
       - name: Build WebAssembly
         run: ./build.sh
 
