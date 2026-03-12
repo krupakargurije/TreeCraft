@@ -1,4 +1,4 @@
-# C++ / WebAssembly Demo
+# TreeCraft
 
 This repo demonstrates compiling a C++ source file for execution in a web browser.
 

@@ -5,19 +5,24 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+
     container:
       image: emscripten/emsdk:2.0.15
-      volumes:
-        - ${{ github.workspace }}:/src
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build WebAssembly
         run: ./build.sh
-      - name: Deploy
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
